@@ -1,5 +1,6 @@
 const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
+const gameFrame = document.querySelector(".game-frame");
 
 const ui = {
   startOverlay: document.querySelector("#startOverlay"),
@@ -2392,8 +2393,45 @@ document.querySelectorAll("[data-control]").forEach((button) => {
   button.addEventListener("lostpointercapture", release);
 });
 
-ui.startButton.addEventListener("click", resetGame);
-ui.restartButton.addEventListener("click", resetGame);
+function isMobileGameView() {
+  return window.matchMedia("(max-width: 760px), (pointer: coarse)").matches;
+}
+
+async function enterMobileFullscreen() {
+  if (!isMobileGameView()) return;
+
+  try {
+    if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+      await document.documentElement.requestFullscreen();
+    }
+  } catch (_error) {
+    // Mobile Safari may keep the game in its viewport-only fullscreen layout.
+  }
+
+  try {
+    if (screen.orientation?.lock) await screen.orientation.lock("landscape");
+  } catch (_error) {
+    // Orientation locking is optional and unsupported on some mobile browsers.
+  }
+}
+
+function beginMobileRun() {
+  void enterMobileFullscreen();
+  resetGame();
+}
+
+function preventMobileGameGesture(event) {
+  if (isMobileGameView()) event.preventDefault();
+}
+
+gameFrame.addEventListener("dblclick", preventMobileGameGesture);
+gameFrame.addEventListener("touchmove", preventMobileGameGesture, { passive: false });
+["gesturestart", "gesturechange", "gestureend"].forEach((eventName) => {
+  gameFrame.addEventListener(eventName, preventMobileGameGesture, { passive: false });
+});
+
+ui.startButton.addEventListener("click", beginMobileRun);
+ui.restartButton.addEventListener("click", beginMobileRun);
 ui.audioToggle.addEventListener("click", (event) => {
   event.preventDefault();
   toggleAudio();
