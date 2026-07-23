@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#07131d" />
+    <title>基朗突擊：校園防線</title>
+    <link rel="stylesheet" href="./styles.css?v=run-gun-5" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true">彈</div>
+          <div>
+            <p class="eyebrow">CCCKL // MONSTER ALERT</p>
+            <h1>基朗突擊<span>：校園防線</span></h1>
+          </div>
+        </div>
+        <p class="tip"><span class="tip-dot"></span>四區推進 · 武器掉落 · 守關巨怪</p>
+      </header>
+
+      <section class="game-card" aria-label="基朗突擊遊戲">
+        <div class="game-frame">
+          <canvas id="game" width="960" height="540" aria-label="基朗突擊遊戲畫面"></canvas>
+
+          <div class="hud" aria-live="polite">
+            <div class="hud-block status-block">
+              <span class="hud-label">生命</span>
+              <div class="health-track"><div id="healthFill" class="health-fill"></div></div>
+              <span id="hpText" class="hud-value">8 / 8</span>
+            </div>
+            <div class="hud-block score-block">
+              <span class="hud-label">分數</span>
+              <strong id="scoreText" class="hud-value">000000</strong>
+            </div>
+            <div class="hud-block stage-block">
+              <span class="hud-label">戰區</span>
+              <strong id="stageText" class="hud-value">01 · 校門</strong>
+              <span id="killText" class="objective-value">擊破 0 / 8</span>
+            </div>
+            <div class="hud-block weapon-block">
+              <span class="hud-label">武器</span>
+              <strong id="weaponText" class="hud-value">RIFLE</strong>
+              <span id="ammoText" class="ammo-value">∞</span>
+            </div>
+            <div class="hud-block grenade-block">
+              <span class="hud-label">手榴彈</span>
+              <strong id="grenadeText" class="hud-value">× 3</strong>
+            </div>
+            <div class="progress-track" aria-hidden="true"><div id="progressFill" class="progress-fill"></div></div>
+          </div>
+
+          <div class="audio-panel" aria-label="聲音設定">
+            <button id="audioToggle" class="audio-toggle" type="button" aria-label="切換背景音樂" title="M 切換背景音樂">♪</button>
+            <label class="volume-control" title="調校遊戲音量">
+              <span>VOL</span>
+              <input id="volumeSlider" type="range" min="0" max="100" value="60" aria-label="遊戲音量" />
+              <output id="volumeValue" for="volumeSlider">60</output>
+            </label>
+          </div>
+
+          <div id="startOverlay" class="overlay">
+            <div class="mission-badge" aria-hidden="true"><span>4</span><small>COMBAT<br />ZONES</small></div>
+            <p class="overlay-kicker">校園緊急防衛任務</p>
+            <h2>怪物攻入校園。<br />拎起武器，逐區反擊。</h2>
+            <p class="overlay-copy">由校門、科學樓、課室一路攻上天台。擊破指定數量怪物先會開放出口；怪物會掉落強力武器，亦可趴下避彈，或跳上平台向下射擊。</p>
+            <button id="startButton" class="primary-button" type="button"><span>開始突擊</span><kbd>ENTER</kbd></button>
+            <p class="overlay-note">A / D 移動 · SPACE 跳 · W / ↑ 向上瞄準 · J 射擊 · 地面 S / ↓ 趴下 · 空中 S / ↓ 向下瞄準</p>
+          </div>
+
+          <div id="gameOverOverlay" class="overlay is-hidden">
+            <div id="resultStamp" class="result-stamp">MISSION FAILED</div>
+            <p id="resultKicker" class="overlay-kicker">防線尚未守住</p>
+            <h2 id="resultTitle">再試一次，打穿四區。</h2>
+            <p class="overlay-copy">本次戰鬥分數 <strong id="finalScore">000000</strong></p>
+            <button id="restartButton" class="primary-button" type="button"><span>重新出擊</span><kbd>ENTER</kbd></button>
+          </div>
+
+          <div id="toast" class="toast" aria-live="polite"></div>
+
+          <div class="touch-controls" aria-label="觸控操作">
+            <div class="touch-cluster movement-cluster">
+              <button data-control="left" aria-label="向左">←</button>
+              <button data-control="right" aria-label="向右">→</button>
+              <button data-control="down" aria-label="趴下或向下瞄準">↓</button>
+            </div>
+            <div class="touch-cluster action-cluster">
+              <button data-control="jump" aria-label="跳躍">跳</button>
+              <button data-control="dash" aria-label="衝刺">衝</button>
+              <button data-control="weapon" aria-label="切換武器">換</button>
+              <button data-control="fire" class="fire-control" aria-label="射擊">射</button>
+              <button data-control="grenade" class="grenade-control" aria-label="手榴彈">雷</button>
+            </div>
+          </div>
+        </div>
+
+        <footer class="game-footer">
+          <span><i class="key-icon">A</i><i class="key-icon">D</i>移動</span>
+          <span><i class="key-icon wide">SPACE</i>跳躍</span>
+          <span><i class="key-icon">W</i>向上射</span>
+          <span><i class="key-icon">S</i>趴下／空中向下射</span>
+          <span><i class="key-icon wide">SHIFT</i>衝刺</span>
+          <span><i class="key-icon">J</i>射擊</span>
+          <span><i class="key-icon">E</i>換槍</span>
+          <span><i class="key-icon accent">Q</i>手榴彈</span>
+          <span><i class="key-icon">M</i>音樂</span>
+          <span class="footer-right">原創 16-bit 校園槍戰</span>
+        </footer>
+      </section>
+    </main>
+    <script src="./game.js?v=run-gun-5"></script>
+  </body>
+</html>

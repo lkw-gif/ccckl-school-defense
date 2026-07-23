@@ -1,0 +1,14 @@
+.DS_Store
+*.log
+
+# Local source references and asset-building helpers are not part of the public game.
+scripts/
+assets/*
+
+# Runtime assets used by the published game.
+!assets/run-gun-stage-1.png
+!assets/run-gun-stage-2.png
+!assets/run-gun-classroom-v2.png
+!assets/run-gun-stage-3.png
+!assets/student-hero-sprites-v2.png
+!assets/monster-sprites-v2.png
