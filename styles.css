@@ -405,8 +405,8 @@ canvas {
 .touch-cluster { pointer-events: auto; }
 
 .touch-cluster button {
-  width: 42px;
-  height: 42px;
+  width: 48px;
+  height: 48px;
   border: 1px solid rgba(223,245,238,.3);
   border-radius: 8px;
   background: rgba(5,18,27,.76);
@@ -421,8 +421,8 @@ canvas {
 .touch-cluster button:active, .touch-cluster button.is-pressed { background-color: rgba(48,123,129,.86); transform: translateY(1px); }
 .movement-cluster {
   display: grid;
-  grid-template-columns: repeat(3, 42px);
-  grid-template-rows: repeat(3, 42px);
+  grid-template-columns: repeat(3, 48px);
+  grid-template-rows: repeat(3, 48px);
   grid-template-areas:
     ". up ."
     "left center right"
@@ -448,11 +448,11 @@ canvas {
 
 .action-cluster {
   display: grid;
-  grid-template-columns: 42px 42px 62px;
-  grid-template-rows: repeat(2, 42px);
+  grid-template-columns: 48px 48px 68px;
+  grid-template-rows: repeat(2, 48px);
   grid-template-areas:
-    "weapon dash fire"
-    ". grenade fire";
+    "jump weapon fire"
+    "dash grenade fire";
   align-items: center;
   gap: 5px;
 }
@@ -476,13 +476,14 @@ canvas {
   transform: translateY(1px) scale(.96);
 }
 
+.touch-cluster .jump-control { grid-area: jump; color: #9aeeaa; }
 .touch-cluster .dash-control { grid-area: dash; color: #ffd475; }
 .touch-cluster .weapon-control { grid-area: weapon; color: #78ebe4; }
 .touch-cluster .grenade-control { grid-area: grenade; color: #ff8d67; }
 
 .action-icon {
-  width: 24px;
-  height: 24px;
+  width: 27px;
+  height: 27px;
   overflow: visible;
   fill: none;
   stroke: currentColor;
@@ -492,14 +493,14 @@ canvas {
   pointer-events: none;
 }
 
-.dash-icon { width: 26px; }
+.dash-icon { width: 29px; }
 .weapon-icon { stroke-width: 2.15; }
 .grenade-icon { stroke-width: 2.05; }
 
 .touch-cluster .fire-control {
   grid-area: fire;
-  width: 62px;
-  height: 62px;
+  width: 68px;
+  height: 68px;
   align-self: center;
   border: 0;
   border-radius: 10px;
@@ -518,8 +519,8 @@ canvas {
 }
 
 .fire-icon {
-  width: 31px;
-  height: 31px;
+  width: 34px;
+  height: 34px;
   overflow: visible;
   fill: none;
   stroke: currentColor;
@@ -681,17 +682,17 @@ canvas {
     left: max(8px, env(safe-area-inset-left));
   }
   .movement-cluster {
-    grid-template-columns: repeat(3, 36px);
-    grid-template-rows: repeat(3, 36px);
+    grid-template-columns: repeat(3, 44px);
+    grid-template-rows: repeat(3, 44px);
   }
-  .touch-cluster button { width: 36px; height: 36px; border-radius: 6px; font-size: 13px; }
+  .touch-cluster button { width: 44px; height: 44px; border-radius: 7px; font-size: 16px; }
   .action-cluster {
-    grid-template-columns: 36px 36px 54px;
-    grid-template-rows: repeat(2, 36px);
+    grid-template-columns: 44px 44px 64px;
+    grid-template-rows: repeat(2, 44px);
     gap: 4px;
   }
-  .touch-cluster .fire-control { width: 54px; height: 54px; }
-  .action-icon { width: 21px; height: 21px; }
-  .dash-icon { width: 23px; }
-  .fire-icon { width: 27px; height: 27px; }
+  .touch-cluster .fire-control { width: 64px; height: 64px; }
+  .action-icon { width: 25px; height: 25px; }
+  .dash-icon { width: 27px; }
+  .fire-icon { width: 32px; height: 32px; }
 }
