@@ -418,7 +418,7 @@ canvas {
   -webkit-tap-highlight-color: transparent;
 }
 
-.touch-cluster button:active, .touch-cluster button.is-pressed { background: rgba(48,123,129,.86); transform: translateY(1px); }
+.touch-cluster button:active, .touch-cluster button.is-pressed { background-color: rgba(48,123,129,.86); transform: translateY(1px); }
 .movement-cluster {
   display: grid;
   grid-template-columns: repeat(3, 42px);
@@ -451,16 +451,34 @@ canvas {
   grid-template-columns: 42px 42px 62px;
   grid-template-rows: repeat(2, 42px);
   grid-template-areas:
-    "jump weapon fire"
-    "dash grenade fire";
+    "weapon dash fire"
+    ". grenade fire";
   align-items: center;
   gap: 5px;
 }
 
-.touch-cluster .jump-control { grid-area: jump; border-color: rgba(118,225,137,.58); color: #9aeeaa; }
-.touch-cluster .dash-control { grid-area: dash; border-color: rgba(255,199,90,.58); color: #ffd475; }
-.touch-cluster .weapon-control { grid-area: weapon; border-color: rgba(98,231,223,.58); color: #78ebe4; }
-.touch-cluster .grenade-control { grid-area: grenade; border-color: rgba(239,79,79,.72); color: #ff8d67; }
+.action-cluster button {
+  border: 0;
+  border-radius: 7px;
+  background-color: transparent;
+  background-image: url("./assets/mobile-action-button-frame-v1.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  box-shadow: none;
+  image-rendering: pixelated;
+}
+
+.action-cluster button:active,
+.action-cluster button.is-pressed {
+  background-color: transparent;
+  filter: brightness(1.22) saturate(1.16);
+  transform: translateY(1px) scale(.96);
+}
+
+.touch-cluster .dash-control { grid-area: dash; color: #ffd475; }
+.touch-cluster .weapon-control { grid-area: weapon; color: #78ebe4; }
+.touch-cluster .grenade-control { grid-area: grenade; color: #ff8d67; }
 
 .action-icon {
   width: 24px;
@@ -483,17 +501,20 @@ canvas {
   width: 62px;
   height: 62px;
   align-self: center;
-  border: 2px solid rgba(255,199,90,.8);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(95,47,22,.84), rgba(8,20,27,.9) 68%);
-  box-shadow: 0 0 0 3px rgba(255,199,90,.1), inset 0 0 14px rgba(255,171,62,.16);
+  border: 0;
+  border-radius: 10px;
+  background-color: transparent;
+  background-image: url("./assets/mobile-action-button-frame-v1.png");
+  box-shadow: 0 0 0 3px rgba(255,199,90,.08), 0 0 16px rgba(255,171,62,.15);
   color: var(--amber);
 }
 
 .touch-cluster .fire-control:active,
 .touch-cluster .fire-control.is-pressed {
-  background: radial-gradient(circle, rgba(255,169,63,.38), rgba(74,37,22,.94) 65%);
-  box-shadow: 0 0 18px rgba(255,186,75,.45), inset 0 0 12px rgba(255,230,147,.28);
+  background-color: transparent;
+  background-image: url("./assets/mobile-action-button-frame-v1.png");
+  box-shadow: 0 0 20px rgba(255,186,75,.5);
+  filter: brightness(1.28) saturate(1.2);
 }
 
 .fire-icon {
