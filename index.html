@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="theme-color" content="#07131d" />
     <title>基朗突擊：校園防線</title>
-    <link rel="stylesheet" href="./styles.css?v=run-gun-5" />
+    <link rel="stylesheet" href="./styles.css?v=run-gun-6" />
   </head>
   <body>
     <main class="app-shell">
@@ -81,16 +81,24 @@
 
           <div class="touch-controls" aria-label="觸控操作">
             <div class="touch-cluster movement-cluster">
-              <button data-control="left" aria-label="向左">←</button>
-              <button data-control="right" aria-label="向右">→</button>
-              <button data-control="down" aria-label="趴下或向下瞄準">↓</button>
+              <button class="dpad-up" data-control="up" aria-label="向上瞄準">↑</button>
+              <button class="dpad-left" data-control="left" aria-label="向左">←</button>
+              <span class="dpad-center" aria-hidden="true"></span>
+              <button class="dpad-right" data-control="right" aria-label="向右">→</button>
+              <button class="dpad-down" data-control="down" aria-label="趴下或向下瞄準">↓</button>
             </div>
             <div class="touch-cluster action-cluster">
-              <button data-control="jump" aria-label="跳躍">跳</button>
-              <button data-control="dash" aria-label="衝刺">衝</button>
-              <button data-control="weapon" aria-label="切換武器">換</button>
-              <button data-control="fire" class="fire-control" aria-label="射擊">射</button>
-              <button data-control="grenade" class="grenade-control" aria-label="手榴彈">雷</button>
+              <button class="jump-control" data-control="jump" aria-label="跳躍">跳</button>
+              <button class="dash-control" data-control="dash" aria-label="衝刺">衝</button>
+              <button class="weapon-control" data-control="weapon" aria-label="切換武器">換</button>
+              <button data-control="fire" class="fire-control" aria-label="射擊">
+                <svg class="fire-icon" viewBox="0 0 32 32" aria-hidden="true">
+                  <circle cx="16" cy="16" r="7"></circle>
+                  <circle class="fire-icon-dot" cx="16" cy="16" r="2"></circle>
+                  <path d="M16 2v7M16 23v7M2 16h7M23 16h7"></path>
+                </svg>
+              </button>
+              <button class="grenade-control" data-control="grenade" aria-label="手榴彈">雷</button>
             </div>
           </div>
         </div>
@@ -109,6 +117,6 @@
         </footer>
       </section>
     </main>
-    <script src="./game.js?v=run-gun-5"></script>
+    <script src="./game.js?v=run-gun-6"></script>
   </body>
 </html>

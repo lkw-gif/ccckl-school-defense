@@ -2373,19 +2373,23 @@ window.addEventListener("blur", () => {
 
 document.querySelectorAll("[data-control]").forEach((button) => {
   const control = button.dataset.control;
-  const release = () => {
+  const release = (event) => {
     button.classList.remove("is-pressed");
     setInput(control, false);
+    if (event?.pointerId !== undefined && button.hasPointerCapture?.(event.pointerId)) {
+      button.releasePointerCapture(event.pointerId);
+    }
   };
   button.addEventListener("pointerdown", (event) => {
     event.preventDefault();
     startAudio();
+    button.setPointerCapture?.(event.pointerId);
     button.classList.add("is-pressed");
     setInput(control, true);
   });
   button.addEventListener("pointerup", release);
   button.addEventListener("pointercancel", release);
-  button.addEventListener("pointerleave", release);
+  button.addEventListener("lostpointercapture", release);
 });
 
 ui.startButton.addEventListener("click", resetGame);

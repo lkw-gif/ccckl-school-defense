@@ -402,13 +402,13 @@ canvas {
   pointer-events: none;
 }
 
-.touch-cluster { display: flex; gap: 6px; pointer-events: auto; }
+.touch-cluster { pointer-events: auto; }
 
 .touch-cluster button {
-  width: 44px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border: 1px solid rgba(223,245,238,.3);
-  border-radius: 7px;
+  border-radius: 8px;
   background: rgba(5,18,27,.76);
   color: #eaf4e5;
   font-size: 15px;
@@ -419,8 +419,78 @@ canvas {
 }
 
 .touch-cluster button:active, .touch-cluster button.is-pressed { background: rgba(48,123,129,.86); transform: translateY(1px); }
-.touch-cluster .fire-control { border-color: rgba(255,199,90,.7); color: var(--amber); }
-.touch-cluster .grenade-control { border-color: rgba(239,79,79,.72); color: #ff8d67; }
+.movement-cluster {
+  display: grid;
+  grid-template-columns: repeat(3, 42px);
+  grid-template-rows: repeat(3, 42px);
+  grid-template-areas:
+    ". up ."
+    "left center right"
+    ". down .";
+  gap: 2px;
+}
+
+.dpad-up { grid-area: up; }
+.dpad-left { grid-area: left; }
+.dpad-right { grid-area: right; }
+.dpad-down { grid-area: down; }
+
+.dpad-center {
+  grid-area: center;
+  display: block;
+  border: 1px solid rgba(223,245,238,.16);
+  border-radius: 7px;
+  background:
+    radial-gradient(circle, rgba(92,221,212,.2) 0 3px, transparent 4px),
+    rgba(5,18,27,.6);
+  box-shadow: inset 0 0 12px rgba(0,0,0,.35);
+}
+
+.action-cluster {
+  display: grid;
+  grid-template-columns: 42px 42px 62px;
+  grid-template-rows: repeat(2, 42px);
+  grid-template-areas:
+    "jump weapon fire"
+    "dash grenade fire";
+  align-items: center;
+  gap: 5px;
+}
+
+.jump-control { grid-area: jump; }
+.dash-control { grid-area: dash; }
+.weapon-control { grid-area: weapon; }
+.touch-cluster .grenade-control { grid-area: grenade; border-color: rgba(239,79,79,.72); color: #ff8d67; }
+
+.touch-cluster .fire-control {
+  grid-area: fire;
+  width: 62px;
+  height: 62px;
+  align-self: center;
+  border: 2px solid rgba(255,199,90,.8);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(95,47,22,.84), rgba(8,20,27,.9) 68%);
+  box-shadow: 0 0 0 3px rgba(255,199,90,.1), inset 0 0 14px rgba(255,171,62,.16);
+  color: var(--amber);
+}
+
+.touch-cluster .fire-control:active,
+.touch-cluster .fire-control.is-pressed {
+  background: radial-gradient(circle, rgba(255,169,63,.38), rgba(74,37,22,.94) 65%);
+  box-shadow: 0 0 18px rgba(255,186,75,.45), inset 0 0 12px rgba(255,230,147,.28);
+}
+
+.fire-icon {
+  width: 31px;
+  height: 31px;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-width: 2.4;
+}
+
+.fire-icon-dot { fill: currentColor; stroke: none; }
 
 #startOverlay:not(.is-hidden) ~ .touch-controls,
 #gameOverOverlay:not(.is-hidden) ~ .touch-controls { display: none !important; }
@@ -494,6 +564,17 @@ canvas {
 @media (pointer: coarse) { .touch-controls { display: flex; } }
 
 @media (max-width: 480px) {
-  .touch-cluster { gap: 4px; }
-  .touch-cluster button { width: 34px; height: 33px; border-radius: 5px; font-size: 12px; }
+  .touch-controls { right: 8px; bottom: 7px; left: 8px; }
+  .movement-cluster {
+    grid-template-columns: repeat(3, 36px);
+    grid-template-rows: repeat(3, 36px);
+  }
+  .touch-cluster button { width: 36px; height: 36px; border-radius: 6px; font-size: 13px; }
+  .action-cluster {
+    grid-template-columns: 36px 36px 54px;
+    grid-template-rows: repeat(2, 36px);
+    gap: 4px;
+  }
+  .touch-cluster .fire-control { width: 54px; height: 54px; }
+  .fire-icon { width: 27px; height: 27px; }
 }
