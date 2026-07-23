@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>基朗突擊：校園防線</title>
-    <link rel="stylesheet" href="./styles.css?v=run-gun-7" />
+    <link rel="stylesheet" href="./styles.css?v=run-gun-8" />
   </head>
   <body>
     <main class="app-shell">
@@ -91,9 +91,21 @@
               <button class="dpad-down" data-control="down" aria-label="趴下或向下瞄準">↓</button>
             </div>
             <div class="touch-cluster action-cluster">
-              <button class="jump-control" data-control="jump" aria-label="跳躍">跳</button>
-              <button class="dash-control" data-control="dash" aria-label="衝刺">衝</button>
-              <button class="weapon-control" data-control="weapon" aria-label="切換武器">換</button>
+              <button class="jump-control" data-control="jump" aria-label="跳躍">
+                <svg class="action-icon jump-icon" viewBox="0 0 32 32" aria-hidden="true">
+                  <path d="M16 25V7M10 13l6-6 6 6M7 27h18"></path>
+                </svg>
+              </button>
+              <button class="dash-control" data-control="dash" aria-label="衝刺">
+                <svg class="action-icon dash-icon" viewBox="0 0 32 32" aria-hidden="true">
+                  <path d="M3 10h8M3 16h6M3 22h8M12 8l8 8-8 8M20 8l8 8-8 8"></path>
+                </svg>
+              </button>
+              <button class="weapon-control" data-control="weapon" aria-label="切換武器">
+                <svg class="action-icon weapon-icon" viewBox="0 0 32 32" aria-hidden="true">
+                  <path d="M7 12c4-6 13-7 18-1M22 6l3 5-5 2M25 20c-4 6-13 7-18 1M10 26l-3-5 5-2"></path>
+                </svg>
+              </button>
               <button data-control="fire" class="fire-control" aria-label="射擊">
                 <svg class="fire-icon" viewBox="0 0 32 32" aria-hidden="true">
                   <circle cx="16" cy="16" r="7"></circle>
@@ -101,7 +113,11 @@
                   <path d="M16 2v7M16 23v7M2 16h7M23 16h7"></path>
                 </svg>
               </button>
-              <button class="grenade-control" data-control="grenade" aria-label="手榴彈">雷</button>
+              <button class="grenade-control" data-control="grenade" aria-label="手榴彈">
+                <svg class="action-icon grenade-icon" viewBox="0 0 32 32" aria-hidden="true">
+                  <path d="M12 11h9l3 6v5c0 4-3 7-8 7s-8-3-8-7v-5l4-6zM13 11V7h7v4M16 7V4h6M22 4l4 4"></path>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -120,6 +136,6 @@
         </footer>
       </section>
     </main>
-    <script src="./game.js?v=run-gun-7"></script>
+    <script src="./game.js?v=run-gun-8"></script>
   </body>
 </html>

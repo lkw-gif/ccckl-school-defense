@@ -457,10 +457,26 @@ canvas {
   gap: 5px;
 }
 
-.jump-control { grid-area: jump; }
-.dash-control { grid-area: dash; }
-.weapon-control { grid-area: weapon; }
+.touch-cluster .jump-control { grid-area: jump; border-color: rgba(118,225,137,.58); color: #9aeeaa; }
+.touch-cluster .dash-control { grid-area: dash; border-color: rgba(255,199,90,.58); color: #ffd475; }
+.touch-cluster .weapon-control { grid-area: weapon; border-color: rgba(98,231,223,.58); color: #78ebe4; }
 .touch-cluster .grenade-control { grid-area: grenade; border-color: rgba(239,79,79,.72); color: #ff8d67; }
+
+.action-icon {
+  width: 24px;
+  height: 24px;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 2.35;
+  pointer-events: none;
+}
+
+.dash-icon { width: 26px; }
+.weapon-icon { stroke-width: 2.15; }
+.grenade-icon { stroke-width: 2.05; }
 
 .touch-cluster .fire-control {
   grid-area: fire;
@@ -654,5 +670,7 @@ canvas {
     gap: 4px;
   }
   .touch-cluster .fire-control { width: 54px; height: 54px; }
+  .action-icon { width: 21px; height: 21px; }
+  .dash-icon { width: 23px; }
   .fire-icon { width: 27px; height: 27px; }
 }
